@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h3>
+      <a href="{{url_for('list_authors')}}"><< &nbsp;Cancel Add</a>
+    </h3>
+    <hr>
+    <h3>Add New Author</h3>
+    <hr>
+    {% for category, message in get_flashed_messages(with_categories = true) %}
+        <div class="alert alert-danger">{{ message }}</div>
+    {% endfor %}
+    <form action="{{ request.path }}" method="post">
+        <label for="name">Name</label><br>
+        <input type="text" id="name" name="name" placeholder="Name" /><br>
+        <label for="title">Title</label><br>
+        <input type="text" id="title" name="title" placeholder="Title" /><br>
+        <label for="content">Tell us a fun animal fact</label><br>
+        <textarea id="content" name="content" placeholder="Your animal fact goes here..."></textarea><br>
+        <input type="submit" value="Submit" />
+    </form>
+{% endblock %}

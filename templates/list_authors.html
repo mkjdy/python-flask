@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h3>
+      <a href="{{url_for('home')}}"><< &nbsp;Back to Home</a>
+    </h3>
+    <hr>
+    {% for message in get_flashed_messages() %}
+    {{ message }}
+    {% endfor %}
+
+    <h3>Authors List</h3>
+    <table border="2">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Title</th>
+                <th>Content</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if authors|length < 1 %}
+                <h4>No authors please add some bellow</h4>
+            {% else %}
+                {% for author in authors %}
+                    <tr>
+                        <td>{{ author.id }}</td>
+                        <td>{{ author.name }}</td>
+                        <td>{{ author.title }}</td>
+                        <td>{{ author.content }}</td>
+                    </tr>
+                {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+    <br><br>
+    <a href="{{url_for('add_authors')}}">Add New Author</a>
+{% endblock %}
